@@ -9,12 +9,24 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
-                use: 'babel-loader',
-                options: { presets: ['env'] }
+                use: [{
+                    loader: 'babel-loader',
+                options: { presets: ['env'] }}]
             },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(jpg|png|gif|svg|pdf)$/,
+                use:[
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name:'[name]-[hash:8].[ext]'
+                        }    
+                    }
+                ]
             }
         ]
     },
